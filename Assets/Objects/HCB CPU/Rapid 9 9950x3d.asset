@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Rapid 9 9950x3d
   m_EditorClassIdentifier: 
   bg: {fileID: 21300000, guid: 2664d816cb1714affbaa9d689ccc1a86, type: 3}
-  name: Rapid 9 9900X3D
-  engraving: Rapid 9 9900X3D
-  singleCore: 4650
-  multiCore: 56200
+  name: Rapid 9 9950X3D
+  engraving: Rapid 9 9950X3D
+  singleCore: 4750
+  multiCore: 70200
   powerConsumption: 0
-  price: 499
+  price: 649
