@@ -19,7 +19,7 @@ public class Dispenser : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         AnimateIn();
         audioSource.PlayOneShot(enterSound);
@@ -45,7 +45,7 @@ public class Dispenser : MonoBehaviour
     }
 
 
-    void OnTriggerExit2D(Collider2D other)
+    public virtual void OnTriggerExit2D(Collider2D other)
     {
         AnimateOut();
         audioSource.PlayOneShot(exitSound);

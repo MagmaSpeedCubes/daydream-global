@@ -17,4 +17,5 @@ MonoBehaviour:
   engraving: Inspire Code i3 \ni3-14100
   singleCore: 3750
   multiCore: 15200
+  powerConsumption: 110
   price: 109

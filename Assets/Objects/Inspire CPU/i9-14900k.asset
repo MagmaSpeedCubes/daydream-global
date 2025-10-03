@@ -17,4 +17,5 @@ MonoBehaviour:
   engraving: Inspire Code i9 \ni9-14900K
   singleCore: 4700
   multiCore: 58600
+  powerConsumption: 250
   price: 419
