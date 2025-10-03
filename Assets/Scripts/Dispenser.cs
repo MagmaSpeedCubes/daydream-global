@@ -12,7 +12,10 @@ public class Dispenser : MonoBehaviour
     [SerializeField] private AudioClip enterSound;
     [SerializeField] private AudioClip exitSound;
 
-    [SerializeField] private GameObject[] animatedItems;
+    [SerializeField] private GameObject[] leftAnimatedItems;
+
+    [SerializeField] private GameObject[] rightAnimatedItems;
+    private bool enterDirectionLeft;
 
     void Awake()
     {
@@ -21,12 +24,25 @@ public class Dispenser : MonoBehaviour
 
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        AnimateIn();
+        Vector3 entryDirection = (transform.position - other.transform.position).normalized;
+        if (Vector3.Dot(entryDirection, Vector3.left) > 0)
+        {
+            Debug.Log("Player entered from the left");
+            AnimateIn(leftAnimatedItems);
+            enterDirectionLeft = true;
+        }
+        else
+        {
+            Debug.Log("Player entered from the right");
+            AnimateIn(rightAnimatedItems);
+            enterDirectionLeft = false;
+        }
+
         audioSource.PlayOneShot(enterSound);
         Debug.Log("Player entered dispenser zone");
     }
 
-    void AnimateIn()
+    void AnimateIn(GameObject[] animatedItems)
     {
         for (int i = 0; i < animatedItems.Length; i++)
         {
@@ -35,7 +51,7 @@ public class Dispenser : MonoBehaviour
         }
     }
 
-    void AnimateOut()
+    void AnimateOut(GameObject[] animatedItems)
     {
         for (int i = 0; i < animatedItems.Length; i++)
         {
@@ -47,7 +63,15 @@ public class Dispenser : MonoBehaviour
 
     public virtual void OnTriggerExit2D(Collider2D other)
     {
-        AnimateOut();
+        if(enterDirectionLeft)
+        {
+            AnimateOut(leftAnimatedItems);
+        }
+        else
+        {
+            AnimateOut(rightAnimatedItems);
+        }
+
         audioSource.PlayOneShot(exitSound);
         Debug.Log("Player exited dispenser zone");
     }
