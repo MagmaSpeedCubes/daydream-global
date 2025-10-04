@@ -48,7 +48,7 @@ public class ClickThrow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     {
         if (followMouse)
         {
-            angle = Mathf.Atan2(originalPosition.y - rectTransform.position.y, originalPosition.x - rectTransform.position.x) * Mathf.Rad2Deg;
+            angle = Mathf.Atan2(originalPosition.y - rectTransform.position.y, originalPosition.x - rectTransform.position.x) * Mathf.Rad2Deg + 180f;
         }        
         Debug.Log("Throwing with force: " + force + " at angle: " + angle);
         // Convert angle to radians
