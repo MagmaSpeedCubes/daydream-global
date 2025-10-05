@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: i9-14900k
   m_EditorClassIdentifier: 
+  box: {fileID: 21300000, guid: 12aa36917c7154f63a5404c93e742be0, type: 3}
   bg: {fileID: 21300000, guid: 6d53b807568e24f29901c9e399309ce6, type: 3}
   name: Inspire Code i9-14900K
   engraving: Inspire Code i9 \ni9-14900K

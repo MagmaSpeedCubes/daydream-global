@@ -5,6 +5,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     [SerializeField] private Canvas canvas;
+    public string itemType;
     
     private void Awake()
     {

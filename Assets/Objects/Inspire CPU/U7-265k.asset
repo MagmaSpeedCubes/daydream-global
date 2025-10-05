@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: U7-265k
   m_EditorClassIdentifier: 
+  box: {fileID: 21300000, guid: f1fd4774b14e544da813f5e0fcaa4d64, type: 3}
   bg: {fileID: 21300000, guid: 6d53b807568e24f29901c9e399309ce6, type: 3}
   name: Inspire Code Ultra 7 265K
   engraving: Inspire Code Ultra 7 \n265K
