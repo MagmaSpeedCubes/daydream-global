@@ -11,6 +11,7 @@ public class CPU : ScriptableObject
     public int multiCore;
     public int powerConsumption;
     public int price;
+    public int integratedGraphics; //0 for none, gpu performance score if present
     
 
 }

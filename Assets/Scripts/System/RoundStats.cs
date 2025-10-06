@@ -20,5 +20,7 @@ public class RoundStats : MonoBehaviour
     public static Storage[] selectedStorage;
     public static Storage highlightedStorage;
 
+    public static int buildTime;
+
 
 }

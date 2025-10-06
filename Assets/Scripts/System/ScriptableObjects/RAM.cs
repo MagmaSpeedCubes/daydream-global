@@ -7,6 +7,5 @@ public class RAM : ScriptableObject
     public int size;
     public int channels;
     public int clockSpeed;
-    public int powerConsumption;
     public int price;
 }

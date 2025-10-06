@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: Rapid 9 9900x3d
   m_EditorClassIdentifier: 
+  box: {fileID: 0}
   bg: {fileID: 21300000, guid: 2664d816cb1714affbaa9d689ccc1a86, type: 3}
-  name: Rapid 9 9900X3D
+  name: HCB Rapid 9 9900X3D
   engraving: Rapid 9 9900X3D
   singleCore: 4650
   multiCore: 56200
-  powerConsumption: 0
+  powerConsumption: 180
   price: 499
+  integratedGraphics: 0

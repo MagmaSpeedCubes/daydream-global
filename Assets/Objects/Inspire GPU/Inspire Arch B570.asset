@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 934945f93f6454c99af3af63c2b2ec4c, type: 3}
-  m_Name: GPU
+  m_Name: Inspire Arch B570
   m_EditorClassIdentifier: 
-  box: {fileID: 0}
-  bg: {fileID: 0}
-  name: 
+  box: {fileID: 21300000, guid: d5e84d69bed0f43338f21e936a910796, type: 3}
+  bg: {fileID: 21300000, guid: bb49b29dc9e814c1b9b4aeb8a7d970b6, type: 3}
+  name: Inspire Arch B580
   engraving: 
-  performance: 0
-  VRAM: 0
-  powerConsumption: 0
-  price: 0
+  performance: 15900
+  VRAM: 12
+  powerConsumption: 190
+  price: 249
