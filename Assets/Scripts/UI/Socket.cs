@@ -14,10 +14,25 @@ public class Socket : MonoBehaviour, IDropHandler
     3 = thermal paste applied
     4 = cooler mounted
     
+    for PCIE:
+    0 = opened default, can install accessories
+    2 = accessory installed and locked
+    1 = accessory installed but can be removed
+
+    for RAM:
+    0 = opened default, can install ram
+    1 = ram installed 
+
+    for STORAGE:
+    0 = opened default, can install storage
+    1 = storage installed
+    2 = storage installed and screwed down
+
+
     */
-    
+
     [SerializeField] private string componentType;
-    [SerializeField] private int installIndex; 
+    [SerializeField] private int installIndex;
     [SerializeField] private int removeIndex;
     [SerializeField] private int startIndex;
     [SerializeField] private BuildHUD buildHUD; // reference to the BuildHUD script to display error messages
@@ -43,11 +58,13 @@ public class Socket : MonoBehaviour, IDropHandler
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
             currentIndex++;
             audioSource.PlayOneShot(installSound);
+            Debug.Log("Item installed in socket");
         }
         else if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<DragDrop>().itemType == componentType && currentIndex == removeIndex)
         {
             currentIndex--;
             audioSource.PlayOneShot(removeSound);
+            Debug.Log("Item removed from socket");
         }
         else
         {
@@ -89,6 +106,8 @@ public class Socket : MonoBehaviour, IDropHandler
         }
         sr.color = originalColor;
     }
+    
+    
     
     
 
