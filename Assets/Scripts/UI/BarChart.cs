@@ -37,7 +37,10 @@ public class BarChart : MonoBehaviour
         bar.rectTransform.sizeDelta = new Vector2(initialWidth * normalized, bar.rectTransform.sizeDelta.y);
         valueText.text = value.ToString("0");
     }
-
+    public float GetValue()
+    {
+        return value;
+    }
     public void SetValue(float newValue)
     {
         value = Mathf.Clamp(newValue, barMin, barMax);
