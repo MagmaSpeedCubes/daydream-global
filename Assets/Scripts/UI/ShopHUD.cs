@@ -137,7 +137,7 @@ public class ShopHUD : MonoBehaviour
             if (RoundStats.customerBudget - totalPrice < 0)
             {
                 buildHUD.ShowPopup("Warning", "Over Budget", "Your current build exceeds the customer's budget", 3);
-                
+
             }
         }
         if (power.GetValue() != totalPower)
@@ -203,6 +203,26 @@ public class ShopHUD : MonoBehaviour
                 barCharts[3].SetLabel("Price");
                 barCharts[3].AnimateToValue(RoundStats.highlightedGPU.price, 0.5f);
                 break;
+            case "Storage":
+                InfoBar.enabled = true;
+                Title.text = RoundStats.highlightedStorage.name;
+
+                barCharts[0].setBounds(0, 24000);
+                barCharts[0].SetLabel("Capacity (GB)");
+                barCharts[0].AnimateToValue(RoundStats.highlightedStorage.capacity, 0.5f);
+
+                barCharts[1].setBounds(0, 7000);
+                barCharts[1].SetLabel("Read Speed (MB/s)");
+                barCharts[1].AnimateToValue(RoundStats.highlightedStorage.readSpeed, 0.5f);
+
+                barCharts[2].setBounds(0, 7000);
+                barCharts[2].SetLabel("Write Speed (MB/s)");
+                barCharts[2].AnimateToValue(RoundStats.highlightedStorage.writeSpeed, 0.5f);
+
+                barCharts[3].setBounds(0, 700);
+                barCharts[3].SetLabel("Price");
+                barCharts[3].AnimateToValue(RoundStats.highlightedStorage.price, 0.5f);
+                break;
             default:
                 for (int i = 0; i < barCharts.Length; i++)
                 {
@@ -223,7 +243,7 @@ public class ShopHUD : MonoBehaviour
                 break;
             case "GPU":
                 RoundStats.selectedGPU = RoundStats.highlightedGPU;
-                break;  
+                break;
             case "Cooler":
                 RoundStats.selectedCooler = RoundStats.highlightedCooler;
                 break;
@@ -244,12 +264,52 @@ public class ShopHUD : MonoBehaviour
                 break;
             case "PSU":
                 RoundStats.selectedPSU = RoundStats.highlightedPSU;
-                break;  
+                break;
 
             default:
                 break;
         }
         audioSource.PlayOneShot(selectSound);
+    }
+
+    public void Remove()
+    {
+        switch(RoundStats.highlightedComponent)
+        {
+            case "CPU":
+                RoundStats.selectedCPU = null;
+                break;
+            case "GPU":
+                RoundStats.selectedGPU = null;
+                break;
+            case "Cooler":
+                RoundStats.selectedCooler = null;
+                break;
+            case "RAM":
+                RoundStats.selectedRAM = null;
+                break;
+            case "Storage":
+                if (RoundStats.selectedStorage != null && RoundStats.selectedStorage.Length > 0)
+                {
+                    int index = System.Array.IndexOf(RoundStats.selectedStorage, RoundStats.highlightedStorage);
+                    if (index >= 0)
+                    {
+                        for (int i = index; i < RoundStats.selectedStorage.Length - 1; i++)
+                        {
+                            RoundStats.selectedStorage[i] = RoundStats.selectedStorage[i + 1];
+                        }
+                        System.Array.Resize(ref RoundStats.selectedStorage, RoundStats.selectedStorage.Length - 1);
+                    }
+                }
+                break;
+            case "PSU":
+                RoundStats.selectedPSU = null;
+                break;
+
+            default:
+                break;
+        }
+
     }
     
 

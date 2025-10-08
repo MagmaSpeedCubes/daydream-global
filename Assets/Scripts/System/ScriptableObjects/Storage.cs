@@ -10,5 +10,6 @@ public class Storage : ScriptableObject
     public int readSpeed; // in MB/s
     public int writeSpeed; // in MB/s
     public int price;
+
     
 }

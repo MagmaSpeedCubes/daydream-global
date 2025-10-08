@@ -12,7 +12,7 @@ public class Screwable : MonoBehaviour, IPointerDownHandler
     [SerializeField] private float revolutions = 3f;
     [SerializeField] private float screwDuration = 2f;
     private bool isScrewing = false;
-    [SerializeField] private bool isScrewed = false;
+    public bool isScrewed = false;
     [SerializeField] private AudioClip screwSound;
     [SerializeField] private bool reversible = true;
 

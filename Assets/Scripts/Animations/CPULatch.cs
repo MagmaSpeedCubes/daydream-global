@@ -70,7 +70,12 @@ public class CPULatch : MonoBehaviour, IPointerDownHandler
             float newAngle = startAngle + (angleDifference * (elapsed / duration));
             obj.rectTransform.eulerAngles = new Vector3(newAngle, 0, 0);
             yield return null;
+            //rotate for aniamtion
         }
-        obj.rectTransform.eulerAngles = new Vector3(targetAngle, 0, 0);
+        obj.rectTransform.eulerAngles = new Vector3(0, 0, 0);
+        obj.rectTransform.localScale = new Vector3(1, -obj.rectTransform.localScale.y, 1);
+        yield return null;
+        //reset rotation and flip for final effect
+        
     }
 }

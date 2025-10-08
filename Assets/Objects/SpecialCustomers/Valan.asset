@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bb0cbe2ba4b64c488e5b1d7bc91e5c4, type: 3}
-  m_Name: Yuriy
+  m_Name: Valan
   m_EditorClassIdentifier: 
-  customerName: Yuriy
-  budget: 700
-  useCases:
-  - Web Browsing
-  - Web Browsing
+  customerName: 
+  budget: 0
+  useCases: []
   useFrequency: []
   performanceExpectation: 0
   flexibility: 0
