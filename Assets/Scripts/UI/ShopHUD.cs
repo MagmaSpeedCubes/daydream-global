@@ -8,9 +8,11 @@ public class ShopHUD : MonoBehaviour
     [SerializeField] private BarChart[] barCharts;
     [SerializeField] private Canvas InfoBar;
     private AudioSource audioSource;
+    
     [SerializeField] private AudioClip selectSound;
 
     [SerializeField] private Canvas shopHUDCanvas;
+    [SerializeField] private Canvas useCaseHUDCanvas;
     [SerializeField] private TextMeshProUGUI cpuText;
     [SerializeField] private TextMeshProUGUI gpuText;
     [SerializeField] private TextMeshProUGUI ramText;
@@ -22,6 +24,12 @@ public class ShopHUD : MonoBehaviour
     [SerializeField] private BarChart power;
 
     [SerializeField] private BuildHUD buildHUD; // reference to the BuildHUD script to display error messages
+    public string selectedUseCase;
+
+    [SerializeField] protected BarChart[] useCaseBars; // Order: CST, CMT, GPU, SRAM, VRAM
+    [SerializeField] protected TextMeshProUGUI useCaseTitle;
+
+
 
 
     void Awake()
@@ -155,6 +163,87 @@ public class ShopHUD : MonoBehaviour
         shopHUDCanvas.enabled = !shopHUDCanvas.enabled;
     }
 
+    public void ToggleUseCaseHUD()
+    {
+        useCaseHUDCanvas.enabled = !useCaseHUDCanvas.enabled;
+    }
+
+    public void UpdateUseCaseHUD()
+    {
+        // Order: CST, CMT, GPU, SRAM, VRAM
+
+        float[] webBrowsingBars = { 100f, 60f, 0f, 30f, 0f };
+        float[] softwareCompilingBars = { 100f, 100f, 0f, 80f, 0f };
+        float[] modelingRenderingBars = { 100f, 100f, 100f, 90f, 100f };
+        float[] photoEditingBars = { 100f, 60f, 100f, 80f, 70f };
+        float[] videoEditingBars = { 100f, 100f, 100f, 70f, 80f };
+        float[] aimlBars = { 100f, 100f, 100f, 80f, 60f };
+        float[] gamingBars = { 90f, 60f, 100f, 80f, 80f };
+        float[] musicProductionBars = { 100f, 100f, 0f, 70f, 0f };
+        float[] physicsSimBars = { 100f, 100f, 100f, 80f, 80f };
+
+        switch (selectedUseCase)
+        {
+            case "Web Browsing":
+                for (int i = 0; i < useCaseBars.Length; i++)
+                {
+                    useCaseBars[i].AnimateToValue(webBrowsingBars[i], 0.5f);
+                }
+                break;
+            case "Software Compiling":
+                for (int i = 0; i < useCaseBars.Length; i++)
+                {
+                    useCaseBars[i].AnimateToValue(softwareCompilingBars[i], 0.5f);
+                }
+                break;
+            case "3D Modeling & Rendering":
+                for (int i = 0; i < useCaseBars.Length; i++)
+                {
+                    useCaseBars[i].AnimateToValue(modelingRenderingBars[i], 0.5f);
+                }
+                break;
+            case "Photo Editing":
+                for (int i = 0; i < useCaseBars.Length; i++)
+                {
+                    useCaseBars[i].AnimateToValue(photoEditingBars[i], 0.5f);
+                }
+                break;
+            case "Video Editing":
+                for (int i = 0; i < useCaseBars.Length; i++)
+                {
+                    useCaseBars[i].AnimateToValue(videoEditingBars[i], 0.5f);
+                }
+                break;
+            case "AI/ML":
+                for (int i = 0; i < useCaseBars.Length; i++)
+                {
+                    useCaseBars[i].AnimateToValue(aimlBars[i], 0.5f);
+                }
+                break;
+            case "Gaming":
+                for (int i = 0; i < useCaseBars.Length; i++)
+                {
+                    useCaseBars[i].AnimateToValue(gamingBars[i], 0.5f);
+                }
+                break;
+            case "Music Production":
+                for (int i = 0; i < useCaseBars.Length; i++)
+                {
+                    useCaseBars[i].AnimateToValue(musicProductionBars[i], 0.5f);
+                }
+                break;
+            case "Physics Simulation":
+                for (int i = 0; i < useCaseBars.Length; i++)
+                {
+                    useCaseBars[i].AnimateToValue(physicsSimBars[i], 0.5f);
+                }
+                break;
+
+
+        }
+        useCaseTitle.text = selectedUseCase;
+    }
+
     public void UpdateInfoBar()
     {
         switch (RoundStats.highlightedComponent)
@@ -222,6 +311,26 @@ public class ShopHUD : MonoBehaviour
                 barCharts[3].setBounds(0, 700);
                 barCharts[3].SetLabel("Price");
                 barCharts[3].AnimateToValue(RoundStats.highlightedStorage.price, 0.5f);
+                break;
+            case "RAM":
+                InfoBar.enabled = true;
+                Title.text = RoundStats.highlightedRAM.name;
+
+                barCharts[0].setBounds(0, 128);
+                barCharts[0].SetLabel("Size (GB)");
+                barCharts[0].AnimateToValue(RoundStats.highlightedRAM.size, 0.5f);
+
+                barCharts[1].setBounds(0, 4);
+                barCharts[1].SetLabel("Channels");
+                barCharts[1].AnimateToValue(RoundStats.highlightedRAM.channels, 0.5f);
+
+                barCharts[2].setBounds(0, 6000);
+                barCharts[2].SetLabel("Clock Speed (MHz)");
+                barCharts[2].AnimateToValue(RoundStats.highlightedRAM.clockSpeed, 0.5f);
+
+                barCharts[3].setBounds(0, 500);
+                barCharts[3].SetLabel("Price");
+                barCharts[3].AnimateToValue(RoundStats.highlightedRAM.price, 0.5f);
                 break;
             default:
                 for (int i = 0; i < barCharts.Length; i++)

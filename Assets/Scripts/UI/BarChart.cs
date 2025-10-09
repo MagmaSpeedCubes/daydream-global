@@ -27,7 +27,7 @@ public class BarChart : MonoBehaviour
         // Record the initial width of the bar
         initialWidth = bar.rectTransform.sizeDelta.x;
 
-        Reset();
+
         UpdateBar();
     }
 
