@@ -79,7 +79,7 @@ virtual public void OnDrag(PointerEventData eventData)
 
     virtual public void OnInstall()
     {
-
+        Debug.Log("OnInstall in DragDrop");
     }
 
     virtual public void OnRemove()
@@ -90,11 +90,11 @@ virtual public void OnDrag(PointerEventData eventData)
     public void LockDrag()
     {
         dragLocked = true;
-        Debug.Log("Drag locked");
+
     }
     public void UnlockDrag()
     {
         dragLocked = false;
-        Debug.Log("Drag unlocked");
+
     }
 }

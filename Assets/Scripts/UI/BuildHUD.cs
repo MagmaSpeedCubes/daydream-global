@@ -46,12 +46,12 @@ public class BuildHUD : MonoBehaviour
                 infoPanel.color = new Color(0.6f, 0.6f, 0.6f, 0.8f);
                 break;
         }
-        Debug.Log("Beginning popup animation");
+
         yield return StartCoroutine(MovePopup(showAnchoredPosition, 0.5f));
         yield return new WaitForSeconds(duration);
         yield return StartCoroutine(MovePopup(hideAnchoredPosition, 0.5f));
         yield return null;
-        Debug.Log("Popup animation complete, hiding HUD");
+
         BuildHUDCanvas.enabled = false;
 
     }

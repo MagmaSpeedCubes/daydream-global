@@ -75,20 +75,26 @@ public class Socket : MonoBehaviour, IDropHandler
                 out localPoint
             );
             droppedRect.anchoredPosition = localPoint + offset;
+            Debug.Log("Dropped position: " + droppedRect.anchoredPosition + " Socket position: " + socketRect.position + " Local point: " + localPoint + " Offset: " + offset);
 
             // Install logic
             currentIndex++;
             audioSource.PlayOneShot(installSound);
             installedComponent = dragDrop;
-            installedComponent.OnInstall();
+            Debug.Log("Installed component: " + installedComponent.name);
+
+
+
             installedComponent.currentSocket = this; // Add this property to DragDrop
-            
+            Debug.Log("Current Socket: " + this.name + " installedComponent: " + installedComponent.name);
+            installedComponent.OnInstall();
+
         }
         else
         {
+
             StartCoroutine(HighlightCoroutine(Color.red, 0.2f, 0.5f));
-            buildHUD.ShowPopup("Error", "Cannot Place Item", errorMessages[Mathf.Clamp(currentIndex - startIndex, 0, errorMessages.Length - 1)], 3);
-        }
+        }  
     }
 
     // Called by DragDrop when the object is picked up (removed from socket)
@@ -98,8 +104,10 @@ public class Socket : MonoBehaviour, IDropHandler
         {
             currentIndex --;
             audioSource.PlayOneShot(removeSound);
+            installedComponent.currentSocket = null; // Clear the reference
             installedComponent.OnRemove();
             installedComponent = null;
+            
             Debug.Log("Item removed from socket");
         }
     }

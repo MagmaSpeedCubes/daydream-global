@@ -62,8 +62,9 @@ public class ScrewedSocket : Socket
             currentIndex++;
             audioSource.PlayOneShot(installSound);
             installedComponent = dragDrop;
-            installedComponent.OnInstall();
+
             installedComponent.currentSocket = this; // Add this property to DragDrop
+            installedComponent.OnInstall();
             
         }
         else

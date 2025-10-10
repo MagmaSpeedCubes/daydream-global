@@ -11,11 +11,11 @@ public class SSDObject : DragDrop
         base.OnInstall();
         if (currentSocket.attributes != null && System.Array.Exists(currentSocket.attributes, element => element == "LeftNVMe"))
         {
-            imageComponent.transform.localRotation = Quaternion.Euler(0, 0, -180); ;
+            imageComponent.transform.localRotation = Quaternion.Euler(0, 0, 180);
         }
         else if (currentSocket.attributes != null && System.Array.Exists(currentSocket.attributes, element => element == "RightNVMe"))
         {
-            imageComponent.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
+            imageComponent.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
