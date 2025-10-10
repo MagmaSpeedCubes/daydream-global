@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: i5-14600k
   m_EditorClassIdentifier: 
-  box: {fileID: 21300000, guid: ed654c9d32ac44bc2b9a0a58ce411b72, type: 3}
+  box: {fileID: 8640227020335012171, guid: 86dad189c0e1841118687bb272129cb7, type: 3}
   bg: {fileID: 21300000, guid: 6d53b807568e24f29901c9e399309ce6, type: 3}
   name: Inspire Code i5-14600K
   engraving: Inspire Code i5 \ni5-14600K
@@ -20,3 +20,4 @@ MonoBehaviour:
   multiCore: 38700
   powerConsumption: 180
   price: 179
+  integratedGraphics: 0

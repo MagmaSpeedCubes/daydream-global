@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: i7-14700k
   m_EditorClassIdentifier: 
-  box: {fileID: 21300000, guid: 4444fc5180c1743caa8fda03df918914, type: 3}
+  box: {fileID: 2910478735826554992, guid: 14ca553890e8f4b41827ee83990be4de, type: 3}
   bg: {fileID: 21300000, guid: 6d53b807568e24f29901c9e399309ce6, type: 3}
   name: Inspire Code i7-14700K
   engraving: Inspire Code i7 \ni7-14700K
@@ -20,3 +20,4 @@ MonoBehaviour:
   multiCore: 52300
   powerConsumption: 250
   price: 299
+  integratedGraphics: 0

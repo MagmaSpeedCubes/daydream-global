@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934945f93f6454c99af3af63c2b2ec4c, type: 3}
   m_Name: ITX 5050
   m_EditorClassIdentifier: 
-  box: {fileID: 0}
+  box: {fileID: 4321055156113858478, guid: 285a5780f48424f28a53f370153ac128, type: 3}
   bg: {fileID: 0}
   name: Neutron Integral ITX 5050
   engraving: ITX 5050

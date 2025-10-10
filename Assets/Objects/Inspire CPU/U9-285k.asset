@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: U9-285k
   m_EditorClassIdentifier: 
-  box: {fileID: 8563120156873264418, guid: eba70c8798d4a4c0d99b65daebb0ba4f, type: 3}
+  box: {fileID: 3449232888711400989, guid: 46220e5c1d2dc4fb3b4122104c6f9e9e, type: 3}
   bg: {fileID: 21300000, guid: 6d53b807568e24f29901c9e399309ce6, type: 3}
   name: Inspire Code Ultra 9 285K
   engraving: Inspire Code Ultra 9 \n285K

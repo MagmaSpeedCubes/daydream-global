@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934945f93f6454c99af3af63c2b2ec4c, type: 3}
   m_Name: ITX 5060
   m_EditorClassIdentifier: 
+  box: {fileID: 7409385525822859948, guid: 334c27cd4937748698154ab81de4428e, type: 3}
   bg: {fileID: 0}
   name: Neutron Integral ITX 5060
   engraving: ITX 5060

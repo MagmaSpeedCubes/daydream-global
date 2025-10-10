@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: i3-14100
   m_EditorClassIdentifier: 
-  box: {fileID: 21300000, guid: bc553a41ad8b649fd84a78eb7b09280a, type: 3}
+  box: {fileID: 3019311003039358821, guid: e2189d32d1d3d4030863880e2fb3e424, type: 3}
   bg: {fileID: 21300000, guid: 6d53b807568e24f29901c9e399309ce6, type: 3}
   name: Inspire Code i3-14100
   engraving: Inspire Code i3 \ni3-14100
@@ -20,3 +20,4 @@ MonoBehaviour:
   multiCore: 15200
   powerConsumption: 110
   price: 109
+  integratedGraphics: 0

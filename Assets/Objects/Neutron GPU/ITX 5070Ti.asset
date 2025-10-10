@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934945f93f6454c99af3af63c2b2ec4c, type: 3}
   m_Name: ITX 5070Ti
   m_EditorClassIdentifier: 
+  box: {fileID: 2626961678896420847, guid: 90652f7d3b706499b9a3022bb0e40800, type: 3}
   bg: {fileID: 0}
   name: Neutron Integral ITX 5070Ti
   engraving: ITX 5070Ti
