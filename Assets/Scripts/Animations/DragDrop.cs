@@ -4,7 +4,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 {
     protected RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    [SerializeField] protected Canvas canvas;
+    protected Canvas canvas;
+    protected RectTransform zoomRoot; // For zoom scaling
     public string itemType;
     public Socket currentSocket = null;
     public bool dragLocked = false;
@@ -15,7 +16,33 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        canvas = GetComponentInParent<Canvas>();
+        if (canvas == null)
+        {
+            canvas = FindObjectOfType<Canvas>();
+            if (canvas == null)
+                Debug.LogError("No Canvas found for DragDrop!");
+        }
     }
+
+private void Start()
+{
+    Transform t = transform;
+    zoomRoot = null;
+    while (t != null)
+    {
+        if (t.name == "BuildZone")
+        {
+            zoomRoot = t as RectTransform;
+            break;
+        }
+        t = t.parent;
+    }
+    if (zoomRoot == null)
+        Debug.LogError("BuildZone (zoom root) not found in ancestor hierarchy!");
+    else
+        Debug.Log("BuildZone found for zoom: " + zoomRoot.name);
+}
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -37,12 +64,13 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         canvasGroup.alpha = 1.0f;
 
     }
-    virtual public void OnDrag(PointerEventData eventData)
-    {
-        if (dragLocked) { Debug.Log("Drag is locked, cannot move"); return; }
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-    }
-
+virtual public void OnDrag(PointerEventData eventData)
+{
+    if (dragLocked) { Debug.Log("Drag is locked, cannot move"); return; }
+    float zoomScale = zoomRoot != null ? zoomRoot.localScale.x : 1f;
+    rectTransform.anchoredPosition += eventData.delta / zoomScale;
+    Debug.Log("Zoom scale (BuildZone): " + zoomScale);
+}
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("OnDrop");

@@ -6,12 +6,22 @@ using System.Collections.Generic;
 public class BuildZone : MonoBehaviour
 {
     [SerializeField] private Canvas buildZoneUI;
+    [SerializeField] private BuildHUD buildHUD;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        if (RoundStats.partsSelected == false)
+        {
+            buildHUD.ShowPopup("Info", "Build Zone", "Select parts to build your PC!", 3);
+            return;
+        }
+        else
+        {
+            buildZoneUI.enabled = true;
+            Debug.Log("Player entered build zone");
+        }
 
-        buildZoneUI.enabled = true;
-        Debug.Log("Player entered build zone");
+
 
     }
 
@@ -25,6 +35,6 @@ public class BuildZone : MonoBehaviour
     public void ExitBuildZone()
     {
         buildZoneUI.enabled = false;
-        Debug.Log("Player exited build zone via button");
+        Debug.Log("Player exited build zone");
     }
 }

@@ -5,7 +5,7 @@ public class ClickThrow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    [SerializeField] private Canvas canvas;
+    protected Canvas canvas;
     [SerializeField] private float throwForce = 10f;
     [SerializeField] private float throwAngle = 45f;
     [SerializeField] private bool followMouse = true;
@@ -14,10 +14,17 @@ public class ClickThrow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
 
     private void Awake()
     {
+        canvas = GameObject.Find("BuildZone").GetComponent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         originalPosition = rectTransform.position;
+
+
+        
+
     }
+
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -40,6 +47,7 @@ public class ClickThrow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     }
     public void OnDrag(PointerEventData eventData)
     {
+        
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 

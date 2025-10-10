@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: U9-285k
   m_EditorClassIdentifier: 
-  box: {fileID: 21300000, guid: 281d84fe3d71044358356de222ea994f, type: 3}
+  box: {fileID: 8563120156873264418, guid: eba70c8798d4a4c0d99b65daebb0ba4f, type: 3}
   bg: {fileID: 21300000, guid: 6d53b807568e24f29901c9e399309ce6, type: 3}
   name: Inspire Code Ultra 9 285K
   engraving: Inspire Code Ultra 9 \n285K
@@ -20,3 +20,4 @@ MonoBehaviour:
   multiCore: 67650
   powerConsumption: 250
   price: 519
+  integratedGraphics: 0

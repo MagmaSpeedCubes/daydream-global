@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RoundStats : MonoBehaviour
 {
+    public static bool partsSelected = false;
     public static string highlightedComponent;
     public static int customerBudget = 2500; //for testing
     public static int systemCost;

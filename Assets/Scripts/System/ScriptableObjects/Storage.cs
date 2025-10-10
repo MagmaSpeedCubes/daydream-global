@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Storage", menuName = "Scriptable Objects/Storage")]
 public class Storage : ScriptableObject
 {
-    public Sprite box;
+    public GameObject box;
     public Sprite bg;
     public string name;
     public int capacity; // in GB

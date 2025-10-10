@@ -59,6 +59,10 @@ public class ShopHUD : MonoBehaviour
 
     public void UpdateHUD()
     {
+        if (RoundStats.partsSelected == true)
+        {
+            return;
+        }
         int totalPrice = 0;
         int totalPower = 0;
         if (RoundStats.selectedCPU != null)
@@ -172,15 +176,15 @@ public class ShopHUD : MonoBehaviour
     {
         // Order: CST, CMT, GPU, SRAM, VRAM
 
-        float[] webBrowsingBars = { 100f, 60f, 0f, 30f, 0f };
+        float[] webBrowsingBars = { 100f, 0f, 0f, 30f, 0f };
         float[] softwareCompilingBars = { 100f, 100f, 0f, 80f, 0f };
-        float[] modelingRenderingBars = { 100f, 100f, 100f, 90f, 100f };
+        float[] modelingRenderingBars = { 30f, 100f, 100f, 90f, 100f };
         float[] photoEditingBars = { 100f, 60f, 100f, 80f, 70f };
         float[] videoEditingBars = { 100f, 100f, 100f, 70f, 80f };
-        float[] aimlBars = { 100f, 100f, 100f, 80f, 60f };
-        float[] gamingBars = { 90f, 60f, 100f, 80f, 80f };
+        float[] aimlBars = { 100f, 100f, 100f, 80f, 100f };
+        float[] gamingBars = { 60f, 60f, 100f, 80f, 80f };
         float[] musicProductionBars = { 100f, 100f, 0f, 70f, 0f };
-        float[] physicsSimBars = { 100f, 100f, 100f, 80f, 80f };
+        float[] physicsSimBars = { 30f, 100f, 100f, 80f, 80f };
 
         switch (selectedUseCase)
         {
