@@ -43,7 +43,7 @@ public class BarChart : MonoBehaviour
     }
     public void SetValue(float newValue)
     {
-        value = Mathf.Clamp(newValue, barMin, barMax);
+        value = newValue;
         UpdateBar();
     }
 

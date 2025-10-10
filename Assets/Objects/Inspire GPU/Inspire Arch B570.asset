@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934945f93f6454c99af3af63c2b2ec4c, type: 3}
   m_Name: Inspire Arch B570
   m_EditorClassIdentifier: 
-  box: {fileID: 21300000, guid: 44facea2ad63941a0b3b043e88bb3706, type: 3}
+  box: {fileID: 6919007459628513786, guid: 3beb272acb83b420c8f319560343b915, type: 3}
   bg: {fileID: 21300000, guid: bb49b29dc9e814c1b9b4aeb8a7d970b6, type: 3}
   name: Inspire Arch B570
   engraving: 

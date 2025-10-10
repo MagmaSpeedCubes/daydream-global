@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: Rapid 5 9600x
   m_EditorClassIdentifier: 
-  box: {fileID: 0}
+  box: {fileID: 6476333481792091838, guid: 80ae0a9d89fed4f97bfefc6cb370054f, type: 3}
   bg: {fileID: 21300000, guid: 2664d816cb1714affbaa9d689ccc1a86, type: 3}
   name: HCB Rapid 5 9600X
   engraving: Rapid 5 9600X

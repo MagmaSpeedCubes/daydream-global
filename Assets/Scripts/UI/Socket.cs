@@ -46,9 +46,11 @@ public class Socket : MonoBehaviour, IDropHandler
     [SerializeField] protected float verticalOffset = 0f; // Vertical offset for dropped item
     protected AudioSource audioSource;
     protected DragDrop installedComponent;
+    
 
     public float lastDropTime;
 
+    public string[] attributes;
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();

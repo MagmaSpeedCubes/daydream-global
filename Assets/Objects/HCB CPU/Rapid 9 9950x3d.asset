@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e53701fe23479c9290ababe47e34d, type: 3}
   m_Name: Rapid 9 9950x3d
   m_EditorClassIdentifier: 
-  box: {fileID: 0}
+  box: {fileID: 3431172336405748792, guid: da78d87d44ad443c496528242147d346, type: 3}
   bg: {fileID: 21300000, guid: 2664d816cb1714affbaa9d689ccc1a86, type: 3}
   name: HCB Rapid 9 9950X3D
   engraving: Rapid 9 9950X3D

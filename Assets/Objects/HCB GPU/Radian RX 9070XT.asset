@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934945f93f6454c99af3af63c2b2ec4c, type: 3}
   m_Name: Radian RX 9070XT
   m_EditorClassIdentifier: 
-  box: {fileID: 0}
+  box: {fileID: 7567359254470309489, guid: e1baea44eae8e4a57b2d5c83b426510b, type: 3}
   bg: {fileID: 0}
   name: HCB Radian RX 9070XT
   engraving: 
