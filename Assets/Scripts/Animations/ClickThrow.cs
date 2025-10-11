@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
+[RequireComponent(typeof(AudioSource))]
 public class ClickThrow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     private RectTransform rectTransform;
@@ -10,10 +11,18 @@ public class ClickThrow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     [SerializeField] private float throwAngle = 45f;
     [SerializeField] private bool followMouse = true;
 
+
+    [SerializeField] protected AudioClip pickupSound;
+    [SerializeField] protected AudioClip dropoffSound;
+    protected AudioSource audioSource;
+
+    
+
     private Vector3 originalPosition;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         canvas = GameObject.Find("BuildZone").GetComponent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
@@ -34,15 +43,13 @@ public class ClickThrow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     {
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.6f;
+        audioSource.PlayOneShot(pickupSound);
     }
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1.0f;
-
-
-
-
+        audioSource.PlayOneShot(dropoffSound);
         Throw(throwForce, throwAngle);
     }
     public void OnDrag(PointerEventData eventData)

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
 using UnityEngine.UI;
+[RequireComponent(typeof(AudioSource))]
 public class Screwable : MonoBehaviour, IPointerDownHandler
 {
     //This script is for the collide, not the actual object
@@ -13,14 +14,17 @@ public class Screwable : MonoBehaviour, IPointerDownHandler
     [SerializeField] private float screwDuration = 2f;
     private bool isScrewing = false;
     public bool isScrewed = false;
-    [SerializeField] private AudioClip screwSound;
+    [SerializeField] protected AudioClip screwSound;
+    protected AudioSource audioSource;
     [SerializeField] private bool reversible = true;
+
 
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -29,6 +33,7 @@ public class Screwable : MonoBehaviour, IPointerDownHandler
         if (!isScrewing)
         {
             initialAngle = rectTransform.eulerAngles.z;
+            audioSource.PlayOneShot(screwSound);
             StartCoroutine(ScrewCoroutine());
         }
     }

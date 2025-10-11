@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73abdb5a807144d8ea3ae8672aa0565c, type: 3}
   m_Name: Hyperbola Fury RGB 32GB
   m_EditorClassIdentifier: 
-  box: {fileID: 0}
+  box: {fileID: 3849094807739706724, guid: 23ae01875c136424cb024098efca499e, type: 3}
   bg: {fileID: 0}
   name: Hyperbola Fury RGB 32GB
   size: 32

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9f79f4e839c47db89f6aa9f141b220, type: 3}
   m_Name: nvme-2tb
   m_EditorClassIdentifier: 
-  box: {fileID: 21300000, guid: e2f431a2cb5e64790a94c249ee8de243, type: 3}
+  box: {fileID: 8118269865379670231, guid: bcc78dedaca5546138e403636416ee1b, type: 3}
   bg: {fileID: -92287871284653028, guid: 12578aab3f2ec423bab190994d7aa94e, type: 3}
   name: GDC Hackathon 980 2TB
   capacity: 2048

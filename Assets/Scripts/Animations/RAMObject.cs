@@ -7,28 +7,24 @@ public class RAMObject : DragDrop
     [SerializeField] private Sprite topView;
     [SerializeField] private Sprite frontView;
     [SerializeField] private Image imageComponent;
-    [SerializeField] private float installHeightRatio;
-    [SerializeField] private float uninstallHeightRatio;
+    [SerializeField] protected Vector2 installSize;
+    [SerializeField] protected Vector2 uninstallSize;
 
     override public void OnInstall()
     {
         base.OnInstall();
-        imageComponent.sprite = frontView;
+        imageComponent.sprite = topView;
         RectTransform rt = imageComponent.GetComponent<RectTransform>();
-        Vector2 size = rt.sizeDelta;
-        size.y = size.x * installHeightRatio; // Set your desired height
-        rt.sizeDelta = size;
+        rt.sizeDelta = installSize;
 
     }
 
     override public void OnRemove()
     {
         base.OnRemove();
-        imageComponent.sprite = topView;
+        imageComponent.sprite = frontView;
         RectTransform rt = imageComponent.GetComponent<RectTransform>();
-        Vector2 size = rt.sizeDelta;
-        size.y = size.x * uninstallHeightRatio; // Set your desired height
-        rt.sizeDelta = size;
+        rt.sizeDelta = uninstallSize;
     }
 
 }

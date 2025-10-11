@@ -37,7 +37,7 @@ public class Socket : MonoBehaviour, IDropHandler
     [SerializeField] protected int removeIndex;
     [SerializeField] protected int startIndex;
     [SerializeField] protected BuildHUD buildHUD; // reference to the BuildHUD script to display error messages
-    [SerializeField] protected string[] errorMessages; // error messages to display when trying to drop an item into a locked socket
+   
     public int currentIndex; //the current status of this socket with 0 being filled 
 
     [SerializeField] protected AudioClip installSound;
@@ -92,7 +92,7 @@ public class Socket : MonoBehaviour, IDropHandler
         }
         else
         {
-
+            audioSource.PlayOneShot(errorSound);
             StartCoroutine(HighlightCoroutine(Color.red, 0.2f, 0.5f));
         }  
     }

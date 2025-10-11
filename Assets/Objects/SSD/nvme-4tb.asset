@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9f79f4e839c47db89f6aa9f141b220, type: 3}
   m_Name: nvme-4tb
   m_EditorClassIdentifier: 
-  box: {fileID: 21300000, guid: be573af5e145b46c2a19bf95d8c4e434, type: 3}
+  box: {fileID: 8870640419837573806, guid: 154f2875fba7546c0a3102cae3b1bb41, type: 3}
   bg: {fileID: -3133315184733257669, guid: 97da1375f4ff84e578e3c00fa202f161, type: 3}
   name: GDC Hackathon 980 4TB
   capacity: 4096

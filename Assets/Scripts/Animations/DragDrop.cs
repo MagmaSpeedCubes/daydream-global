@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+[RequireComponent(typeof(AudioSource))]
 public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
     protected RectTransform rectTransform;
@@ -12,6 +13,10 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public float lastDropTime;
 
+    [SerializeField] protected AudioClip pickupSound;
+    [SerializeField] protected AudioClip dropoffSound;
+    protected AudioSource audioSource;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -23,6 +28,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
             if (canvas == null)
                 Debug.LogError("No Canvas found for DragDrop!");
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
 private void Start()
@@ -57,11 +63,13 @@ private void Start()
             currentSocket.OnRemoveFromSocket();
             currentSocket = null;
         }
+        audioSource.PlayOneShot(pickupSound);
     }
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1.0f;
+        audioSource.PlayOneShot(dropoffSound);
 
     }
 virtual public void OnDrag(PointerEventData eventData)

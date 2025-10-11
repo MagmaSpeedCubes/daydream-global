@@ -14,9 +14,9 @@ public class PartSpawner : MonoBehaviour
         CPU cpu = RoundStats.selectedCPU;
         GPU gpu = RoundStats.selectedGPU;
         // Cooler cooler = RoundStats.selectedCooler;
-        // RAM ram = RoundStats.selectedRAM;
+        RAM ram = RoundStats.selectedRAM;
         // PSU psu = RoundStats.selectedPSU;
-        // Storage[] storageArray = RoundStats.selectedStorage;
+        Storage[] storageArray = RoundStats.selectedStorage;
 
         // if (cpu == null || gpu == null || cooler == null || ram == null || psu == null || storageArray == null)
         // {
@@ -27,15 +27,15 @@ public class PartSpawner : MonoBehaviour
         SpawnPart(cpu.box, spawnPoints[0]);
         SpawnPart(gpu.box, spawnPoints[1]);
         // SpawnPart(cooler.box, spawnPoints[2]);
-        // SpawnPart(ram.box, spawnPoints[3]);
+        SpawnPart(ram.box, spawnPoints[3]);
         // SpawnPart(psu.box, spawnPoints[4]);
-        // for (int i = 0; i < storageArray.Length; i++)
-        // {
-        //     if (storageArray[i] != null)
-        //     {
-        //         SpawnPart(storageArray[i].box, spawnPoints[(5 + i) % spawnPoints.Length]);
-        //     }
-        // }
+        for (int i = 0; i < storageArray.Length; i++)
+        {
+            if (storageArray[i] != null)
+            {
+                SpawnPart(storageArray[i].box, spawnPoints[(5 + i) % spawnPoints.Length]);
+            }
+        }
 
         RoundStats.partsSelected = true; // Prevent re-spawning
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9f79f4e839c47db89f6aa9f141b220, type: 3}
   m_Name: nvme-8tb
   m_EditorClassIdentifier: 
-  box: {fileID: 21300000, guid: f9333d5e7be6647f89c3da23da87a8ca, type: 3}
+  box: {fileID: 6552685534311833091, guid: d6fc67cd4da1045c79f7f3ca0e8ad2ea, type: 3}
   bg: {fileID: -5341199619083148399, guid: 3d2e0300782d94696b13eb5d9c0f157b, type: 3}
   name: GDC Hackathon 980 8TB
   capacity: 8192

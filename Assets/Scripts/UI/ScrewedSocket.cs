@@ -69,8 +69,9 @@ public class ScrewedSocket : Socket
         }
         else
         {
+            audioSource.PlayOneShot(errorSound);
             StartCoroutine(HighlightCoroutine(Color.red, 0.2f, 0.5f));
-            buildHUD.ShowPopup("Error", "Cannot Place Item", errorMessages[Mathf.Clamp(currentIndex - startIndex, 0, errorMessages.Length - 1)], 3);
+            
         }
     }
     override public void OnRemoveFromSocket()
