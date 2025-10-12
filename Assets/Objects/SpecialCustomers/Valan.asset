@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb0cbe2ba4b64c488e5b1d7bc91e5c4, type: 3}
   m_Name: Valan
   m_EditorClassIdentifier: 
-  customerName: 
+  customerName: Valan
   budget: 0
-  useCases: []
-  useFrequency: []
-  performanceExpectation: 0
-  flexibility: 0
-  mood: 0
+  useCases:
+  - Gaming
+  useFrequency:
+  - 100
+  performanceExpectation: 30
+  flexibility: 50
+  mood: 10
   patience: 0
   prefferedBrands: []
   dislikedBrands: []
