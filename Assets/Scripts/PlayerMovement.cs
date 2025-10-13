@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Sprite leftSprite;
     [SerializeField] private Sprite rightSprite;
+    [SerializeField] protected ChallengeGameHandler cgh;
 
 
     void Start()
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
                       Keyboard.current.downArrowKey.isPressed ? -1 : 0;
 
 
-        rb.linearVelocity = new Vector2((xInput + xInput2) * speed, (yInput + yInput2) * speed);
+        rb.linearVelocity = (cgh == null || cgh.gameActive) ? new Vector2((xInput + xInput2) * speed, (yInput + yInput2) * speed) : new Vector2(0f, 0f); 
         if (xInput + xInput2 < 0)
         {
             sr.sprite = leftSprite;

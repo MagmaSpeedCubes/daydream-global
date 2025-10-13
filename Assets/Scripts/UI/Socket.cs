@@ -88,6 +88,7 @@ public class Socket : MonoBehaviour, IDropHandler
             installedComponent.currentSocket = this; // Add this property to DragDrop
             Debug.Log("Current Socket: " + this.name + " installedComponent: " + installedComponent.name);
             installedComponent.OnInstall();
+            Install();
 
         }
         else
@@ -110,6 +111,34 @@ public class Socket : MonoBehaviour, IDropHandler
             
             Debug.Log("Item removed from socket");
         }
+    }
+
+    virtual protected void Install()
+    {
+        GameObject installedObject = installedComponent.gameObject;
+
+        switch (installedComponent.itemType)
+        {
+            case "ACPU":
+            case "ICPU":
+                RoundStats.builtPC.cpu = RoundStats.selectedCPU;
+                break;
+            case "GPU":
+                RoundStats.builtPC.gpu = RoundStats.selectedGPU;
+                break;
+            case "RAM":
+                RoundStats.builtPC.ram = RoundStats.selectedRAM;
+                break;
+            case "Cooler":
+                RoundStats.builtPC.cooler = RoundStats.selectedCooler;
+                break;
+            case "Storage":
+                RoundStats.builtPC.storage = RoundStats.selectedStorage;
+                break;
+        }
+
+        Debug.Log("Installed " + installedComponent.itemType);
+        Debug.Log(RoundStats.builtPC);
     }
 
     void Update()

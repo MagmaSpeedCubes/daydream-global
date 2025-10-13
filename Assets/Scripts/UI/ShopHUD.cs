@@ -61,6 +61,13 @@ public class ShopHUD : MonoBehaviour
     {
         if (RoundStats.partsSelected == true)
         {
+            cpuText.color = Color.green;
+            gpuText.color = Color.green;
+            ramText.color = Color.green;
+            storageText.color = Color.green;
+            coolerText.color = Color.green;
+            psuText.color = Color.green;
+
             return;
         }
         int totalPrice = 0;
@@ -124,6 +131,8 @@ public class ShopHUD : MonoBehaviour
                 totalPrice += s.price;
             }
             totalPower += RoundStats.selectedStorage.Length * 5;
+
+
         }
         else
         {
@@ -132,16 +141,33 @@ public class ShopHUD : MonoBehaviour
 
         //Storage
 
-        if (RoundStats.selectedPSU != null)
-        {
-            psuText.text = "PSU: " + RoundStats.selectedPSU.name;
-            totalPrice += RoundStats.selectedPSU.price;
-        }
-        else
-        {
-            psuText.text = "PSU: None";
-        }
         //PSU
+
+        int[] powerSupplyWattage = new int[] { 650, 750, 850, 1000, 1250, 1500, 2500 };
+        int[] powerSupplyCost = new int[] { 69, 99, 119, 159, 189, 349, 799 };
+
+        int selectedPSUIndex = -1;
+        for (int i = 0; i < powerSupplyWattage.Length; i++)
+        {
+            if (powerSupplyWattage[i] >= totalPower)
+            {
+                selectedPSUIndex = i;
+                break;
+            }
+        }
+        if (selectedPSUIndex != -1)
+        {
+            // Create a new PSU object or fetch from a list/database if available
+            PSU autoPSU = new PSU
+            {
+                name = powerSupplyWattage[selectedPSUIndex] + "W PSU",
+                power = powerSupplyWattage[selectedPSUIndex],
+                price = powerSupplyCost[selectedPSUIndex]
+            };
+            RoundStats.selectedPSU = autoPSU;
+            totalPrice += autoPSU.price;
+            psuText.text = "PSU: " + autoPSU.name;
+        }
 
         if (budget.GetValue() != RoundStats.customerBudget - totalPrice)
         {
@@ -156,6 +182,12 @@ public class ShopHUD : MonoBehaviour
         {
             power.AnimateToValue(totalPower, 0.5f);
         }
+        RoundStats.builtPC.totalPrice = totalPrice;
+        Debug.Log(RoundStats.builtPC.totalPrice);
+
+
+        
+
 
 
 
@@ -335,6 +367,27 @@ public class ShopHUD : MonoBehaviour
                 barCharts[3].setBounds(0, 500);
                 barCharts[3].SetLabel("Price");
                 barCharts[3].AnimateToValue(RoundStats.highlightedRAM.price, 0.5f);
+                break;
+            case "Cooler":
+                InfoBar.enabled = true;
+
+                Title.text = RoundStats.highlightedCooler.name;
+
+                barCharts[0].setBounds(0, 0);
+                barCharts[0].SetLabel("");
+                barCharts[0].AnimateToValue(0, 0.5f);
+
+                barCharts[1].setBounds(0, 0);
+                barCharts[1].SetLabel("");
+                barCharts[1].AnimateToValue(0, 0.5f);
+
+                barCharts[2].setBounds(0, 300);
+                barCharts[2].SetLabel("Cooling Power");
+                barCharts[2].AnimateToValue(RoundStats.highlightedCooler.coolingPower, 0.5f);
+
+                barCharts[3].setBounds(0, 300);
+                barCharts[3].SetLabel("Price");
+                barCharts[3].AnimateToValue(RoundStats.highlightedCooler.price, 0.5f);
                 break;
             default:
                 for (int i = 0; i < barCharts.Length; i++)

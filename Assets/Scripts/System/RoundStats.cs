@@ -21,7 +21,14 @@ public class RoundStats : MonoBehaviour
     public static Storage[] selectedStorage;
     public static Storage highlightedStorage;
 
-    public static int buildTime;
 
+    public static Customer customer;
+    public static BuiltPC builtPC;
 
+    public static float buildTime;
+
+    void Awake()
+    {
+        builtPC = new BuiltPC();
+    }
 }

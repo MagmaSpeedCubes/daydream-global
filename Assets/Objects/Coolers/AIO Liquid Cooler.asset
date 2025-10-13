@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b318593590e64af9955663205d1cb75, type: 3}
+  m_Name: AIO Liquid Cooler
+  m_EditorClassIdentifier: 
+  box: {fileID: 5691379094744000921, guid: 7997ff6c484fc4d529096615a7ea6565, type: 3}
+  icon: {fileID: 0}
+  name: AIO Liquid Cooler
+  price: 289
+  coolingPower: 300

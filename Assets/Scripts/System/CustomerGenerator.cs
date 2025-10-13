@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Linq;
+using System;
 public class CustomerGenerator : MonoBehaviour
 {
     public static CustomerGenerator instance;
@@ -32,58 +34,56 @@ public class CustomerGenerator : MonoBehaviour
         else
         {
             Debug.LogWarning("Multiple instances of CustomerGenerator detected. Destroying duplicate.");
-            Destory(this);
+            Destroy(this);
         }
     }
 
-    public static Customer generateCustomer()
+    public static Customer GenerateCustomerStatic()
     {
-        return instance.generateCustomer();
+        return instance.GenerateCustomer();
     }
 
-    public Customer generateCustomer()
+    public Customer GenerateCustomer()
     {
         Customer c = new Customer();
-        int specialCustomer = Random.Range(0, 50);
+        System.Random r = new System.Random();
+        int specialCustomer = r.Next(0, 50);
         if (specialCustomer == 0)
         {
-            int randIndex = Random.Range(0, specialCustomers.Length);
+            int randIndex = r.Next(0, specialCustomers.Length);
             c = specialCustomers[randIndex];
 
         }
         else
         {
-            int randIndex = Random.Range(0, customerNames.Length);
+            int randIndex = r.Next(0, customerNames.Length);
             c.customerName = customerNames[randIndex];
 
-            c.budget = Math.Pow(Random.Range(30, 100), 2) * 0.5;
-            for (int i = 1; i < useCases.Length; i++)
+            double t = Math.Pow(r.NextDouble(), 2.5);
+            c.budget = (int)(600 + t * (6000 - 600));
+
+            float usePercentage = 100;
+            for (int i = useCases.Length-1; i >=0; i--)
             {
-                int included = Random.Range(1, useCases.Length);
+                int included = r.Next(1, useCases.Length);
                 if (i >= included)
                 {
-                    
+                    System.Array.Resize(ref c.useCases, c.useCases.Length + 1);
+                    System.Array.Resize(ref c.useFrequency, c.useFrequency.Length + 1);
+                    c.useCases[c.useCases.Length - 1] = useCases[i];
+
+
+                    c.useFrequency[c.useFrequency.Length - 1] = r.Next(0, (int)usePercentage);
+                    usePercentage -= c.useFrequency[c.useFrequency.Length - 1];
                 }
+                //can be less than 100, some customers dont use their pc very often
+
+                c.flexibility = (int)Math.Sqrt(r.NextDouble() * 10000);
+                c.mood = (int)Math.Sqrt(r.NextDouble() * 10000);
+                c.patience = (int)Math.Sqrt(r.NextDouble() * 10000);
+
             }
-            
-            //             public int budget;
-            // public string[] useCases;
-            // public float[] useFrequency;
-            // public float performanceExpectation;
-            // public float flexibility; //how flexible they are with budget and performance
-            // public float mood; //how likely they are to be satisfied with the build
-            // public float patience; //how long they are willing to wait for the build
-            // public string[] prefferedBrands; //brand loyalty
-            // public string[] dislikedBrands; //brand aversionc.customerName = customerNames[randIndex];
-
         }
-
-
         return c;
-
-
-
-        
-
     }
 }

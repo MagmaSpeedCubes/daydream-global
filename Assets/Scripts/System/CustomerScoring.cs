@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class CustomerScoring : MonoBehaviour
 {
-    public void CalculateCustomerScore(Customer c)
+    public static string CalculateCustomerScore(Customer c)
     {
-        BuiltPC pc = c.finalBuild;
+        BuiltPC pc = RoundStats.builtPC;
         int score = 0;
+        System.Text.StringBuilder log = new System.Text.StringBuilder();
 
+        log.AppendLine($"Customer: {c.name}");
+        log.AppendLine($"Budget: {c.budget}, Flexibility: {c.flexibility}, Patience: {c.patience}");
+
+        Debug.Log(pc.totalPrice);
+        Debug.Log(RoundStats.buildTime);
+
+        log.AppendLine($"Build Price: {pc.totalPrice}, Build Time: {RoundStats.buildTime}");
+
+        // Generate performance expectation based on budget
+        float perfExpectation = GeneratePerformanceExpectation(c.budget);
 
         for (int i = 0; i < c.useCases.Length; i++)
         {
@@ -18,7 +29,7 @@ public class CustomerScoring : MonoBehaviour
             int cmt = pc.cpu.multiCore;
             int gpu = pc.gpu != null ? pc.gpu.performance : pc.cpu.integratedGraphics;
             int sram = (int)(pc.ram.size * pc.ram.clockSpeed * Mathf.Log(pc.ram.channels));
-            int vram = (int)(pc.gpu != null ? pc.gpu.VRAM + Mathf.Log(pc.ram.size): Mathf.Log(pc.ram.size));
+            int vram = (int)(pc.gpu != null ? pc.gpu.VRAM + Mathf.Log(pc.ram.size) : Mathf.Log(pc.ram.size));
 
             switch (useCase)
             {
@@ -41,46 +52,77 @@ public class CustomerScoring : MonoBehaviour
                     performance = Performance.AIML(cst, cmt, gpu, sram, vram);
                     break;
                 case "Gaming":
-                    performance = Performance.Gaming(cst, cmt, gpu, sram, vram); //placeholder
+                    performance = Performance.Gaming(cst, cmt, gpu, sram, vram);
                     break;
                 case "Music Production":
-                    performance = Performance.MusicProduction(cst, cmt, gpu, sram, vram); //placeholder
+                    performance = Performance.MusicProduction(cst, cmt, gpu, sram, vram);
                     break;
                 case "Physics Simulations":
-                    performance = Performance.PhysicsSimulations(cst, cmt, gpu, sram, vram); //placeholder
+                    performance = Performance.PhysicsSimulations(cst, cmt, gpu, sram, vram);
                     break;
                 default:
-                    Debug.LogWarning("Unknown use case: " + useCase);
-                    break;
+                    log.AppendLine($"Unknown use case: {useCase}");
+                    continue;
             }
 
-            score += (int)((PerformanceScore(c, performance) > 0)
-            ? (int)(PerformanceScore(c, performance) * frequency)
-            : (PerformanceScore(c, performance) * frequency * 100 / c.flexibility));
+            int perfScore = PerformanceScore(perfExpectation, performance);
+            int useCaseScore = (perfScore > 0)
+                ? (int)(perfScore * frequency)
+                : (int)(perfScore * frequency * 100 / c.flexibility);
 
+            score += useCaseScore;
 
-
+            log.AppendLine(
+                $"{useCase}: {useCaseScore}\n"
+            );
         }
-        score += TimeBonus(c);
-        score += BudgetBonus(c, pc.totalPrice);
-        
-        
-    }
-    
-    public int BudgetBonus(Customer c, int totalPrice)
-    {
-        return (c.budget - totalPrice) * 100;
+
+        int timeBonus = TimeBonus(c);
+        int budgetBonus = BudgetBonus(c, pc.totalPrice);
+
+        score += timeBonus;
+        score += budgetBonus;
+
+        log.AppendLine($"Time Bonus: {timeBonus}");
+        log.AppendLine($"Budget Bonus: {budgetBonus}");
+        log.AppendLine($"Final Score: {score}");
+
+        return log.ToString();
     }
 
-    public int TimeBonus(Customer c)
+    public static float GeneratePerformanceExpectation(int budget)
     {
-        return (int)((RoundStats.buildTime - c.patience * 10) * 100);
+        // Budget range: 600 (min) to 6000 (max)
+        // Performance range: 0 (min) to 1000 (max)
+        float minBudget = 600f;
+        float maxBudget = 6000f;
+        float minPerformance = 0f;
+        float maxPerformance = 100f;
+
+        // Use logarithmic scaling
+        float safeBudget = Mathf.Max(budget, minBudget);
+        float logMin = Mathf.Log(minBudget);
+        float logMax = Mathf.Log(maxBudget);
+        float logBudget = Mathf.Log(safeBudget);
+
+        float t = Mathf.Clamp01((logBudget - logMin) / (logMax - logMin));
+        return Mathf.Lerp(minPerformance, maxPerformance, t);
     }
 
-    public int PerformanceScore(Customer c, float performance)
+    public static int BudgetBonus(Customer c, int totalPrice)
     {
-        float performanceDifference = performance - c.performanceExpectation;
+        return (c.budget - totalPrice) * 1000;
+    }
+
+    public static int TimeBonus(Customer c)
+    {
+        return (int)((c.patience * 10 - RoundStats.buildTime) * 1000);
+    }
+
+    public static int PerformanceScore(float perfExpectation, float performance)
+    {
+        float performanceDifference = performance - perfExpectation;
         return (int)(performanceDifference * 1000);
-        //assuming performance calulation is normalized
+        //assuming performance calculation is normalized
     }
 }

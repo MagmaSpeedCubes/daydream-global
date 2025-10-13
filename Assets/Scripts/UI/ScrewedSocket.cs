@@ -65,13 +65,14 @@ public class ScrewedSocket : Socket
 
             installedComponent.currentSocket = this; // Add this property to DragDrop
             installedComponent.OnInstall();
+            Install();
             
         }
         else
         {
             audioSource.PlayOneShot(errorSound);
             StartCoroutine(HighlightCoroutine(Color.red, 0.2f, 0.5f));
-            
+
         }
     }
     override public void OnRemoveFromSocket()
